@@ -1,0 +1,20 @@
+CREATE TABLE t_user(
+   iuser INT UNSIGNED AUTO_INCREMENT,
+   uid VARCHAR(20) UNIQUE NOT NULL,
+   upw VARCHAR(150) NOT NULL,
+   nm VARCHAR(5) NOT NULL,
+   gender tinyINT unsigned CHECK(gender IN (1, 2)),
+   rdt DATETIME DEFAULT NOW(),
+   PRIMARY KEY(iuser)
+);
+
+CREATE TABLE t_board(
+    iboard INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(100) NOT NULL,
+    ctnt VARCHAR(3000) NOT NULL,
+    writer INT UNSIGNED NOT NULL,
+    hit INT UNSIGNED not null DEFAULT 0,
+    rdt DATETIME NOT NULL DEFAULT NOW(),
+    mdt DATETIME NOT NULL DEFAULT NOW(),
+    FOREIGN KEY(writer) REFERENCES t_user(iuser)
+);
